@@ -16,7 +16,7 @@ using namespace std;
 class GLWidget3D : public QGLWidget
 {
 public:
-	void loadOBJ(const QString& filename);
+	void loadOBJ(const char* filename);
 
 protected:
 	void initializeGL();

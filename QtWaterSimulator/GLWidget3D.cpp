@@ -113,7 +113,7 @@ void GLWidget3D::paintGL()
 /**
  * Load an OBJ file and create the corresponding VAO.
  */
-void GLWidget3D::loadOBJ(const QString& filename)
+void GLWidget3D::loadOBJ(const char* filename)
 {
 	OBJLoader::load(filename, vertices);
 }

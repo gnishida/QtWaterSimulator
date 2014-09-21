@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QVector3D>
+#include "Vector3f.h"
 
 /**
  * This structure defines a vertex data.
@@ -13,7 +13,7 @@ struct Vertex {
 
 	Vertex() {}
 
-	Vertex(QVector3D pos, QVector3D c, QVector3D n, QVector3D tex) {
+	Vertex(Vector3f pos, Vector3f c, Vector3f n, Vector3f tex) {
 		position[0]=pos.x();
 		position[1]=pos.y();
 		position[2]=pos.z();
