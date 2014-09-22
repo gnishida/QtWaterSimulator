@@ -47,6 +47,7 @@ WaterSimulator::WaterSimulator(int w, int h) : _initialized(0), _width(w), _heig
 	_centerLoc = glGetUniformLocation(_programId, "center");
 	_frequencyLoc = glGetUniformLocation(_programId, "frequency");
 	_amplitudeLoc = glGetUniformLocation(_programId, "amplitude");
+	_islandLoc = glGetUniformLocation(_programId, "island");
 	_lightDirLoc = glGetUniformLocation(_programId, "lightDir");
 }
 
@@ -77,10 +78,12 @@ void WaterSimulator::update(float t)
 	float frequency[] = {50.0, 40.0, 25.0};
 	float amplitude[] = {0.4, 0.3, 0.3};
 	float lightDir[] = {0.0, 0.0, 1.0};
+	float island[] = {0.5, 0.5};
 	glUniform2fv(_centerLoc, 3, center);
 	glUniform1fv(_frequencyLoc, 3, frequency);
 	glUniform1fv(_amplitudeLoc, 3, amplitude);
 	glUniform3fv(_lightDirLoc, 1, lightDir);
+	glUniform2fv(_islandLoc, 1, island);
 	glUniform1f(_tLoc, t);
             
 	// By drawing a quad, the fragment shader will be called for each pixel.

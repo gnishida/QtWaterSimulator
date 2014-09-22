@@ -1,6 +1,7 @@
 uniform vec2 center[3];
 uniform float frequency[3];
 uniform float amplitude[3];
+uniform vec2 island;
 uniform vec3 lightDir;
 uniform float t;
 uniform sampler2D texUnit;
@@ -22,11 +23,18 @@ void main()
 			n.y += amplitude[i] * frequency[i] * cos(dr * frequency[i] - t) * dy / dr * 0.1;
 		}
 	}
-	n = normalize(n);
 
-	vec3 l = normalize(lightDir);
+	vec2 land_dist = gl_TexCoord[0].xy - island;
+	float sigma = 0.3;
+	float land_height = 30.0 * exp(-dot(land_dist, land_dist) * 0.5 / sigma / sigma) - 20.0;
 
-	float diffuse = max(0.0, dot(n, l));
-	//gl_FragColor = vec4(l, 1.0);
-	gl_FragColor = vec4(diffuse, diffuse, 1.0, 1.0);
+	if (land_height > height) {
+		gl_FragColor = vec4(1.0 - clamp(land_height * 0.1, 0.0, 1.0), 1.0, 1.0 - clamp(land_height * 0.1, 0.0, 1.0), 1.0);
+	} else {
+		n = normalize(n);
+		vec3 l = normalize(lightDir);
+
+		float diffuse = max(0.0, dot(n, l));
+		gl_FragColor = vec4(diffuse * 0.9 + 0.1, diffuse * 0.9 + 0.1, 1.0, 1.0);
+	}
 }

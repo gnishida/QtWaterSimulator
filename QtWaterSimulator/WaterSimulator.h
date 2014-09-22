@@ -1,6 +1,5 @@
 #pragma once
 
-#define GLEW_STATIC 1
 #include <GL/glew.h>
 #include <string>
 
@@ -23,6 +22,7 @@ private:
 	GLuint _centerLoc;
 	GLuint _frequencyLoc;
 	GLuint _amplitudeLoc;
+	GLuint _islandLoc;
 	GLuint _lightDirLoc;
     
     GLuint _textureId;		// The texture ID used to store data array
